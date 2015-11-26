@@ -1,23 +1,34 @@
+import delay from 'lodash/function/delay.js';
+
+function isFullScreen(){
+    if(window.innerHeight === screen.height){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 function getScreenAttributes(){
     let h = window.innerHeight;
     let w = window.innerWidth;
-    let type;
     if (w > 1024) {
         w = 1024;
         if (h > 768) {
             h = 768;
         }
     }
+
+    /*let type;
     if(w >= 768){
         type = "lg";
     }else{
         type = "sml";
-    }
+    }*/
 
     return {
         screenWidth: w,
         screenHeight: h,
-        screenType: type
+        //screenType: type
     };
 }
 
@@ -29,9 +40,11 @@ const ScreenAttributes = {
         window.removeEventListener('resize', this.onScreenAttributesChange);
     },
     onScreenAttributesChange(){
-        this.setState(getScreenAttributes());
+        delay(function(){
+            this.setState(getScreenAttributes());
+        }.bind(this), 0);
     }
 };
 
-export {getScreenAttributes};
+export {getScreenAttributes, isFullScreen};
 export default ScreenAttributes;
