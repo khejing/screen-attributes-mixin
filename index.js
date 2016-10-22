@@ -43,12 +43,12 @@ function get16to9Dimensions(width, height){
     if(height > width){
         return {
             width: width,
-            height: width * 9 / 16;
-        }
+            height: width * 9 / 16
+        };
     }
     if(width > height){
         return {
-            width: height * 16 / 9;
+            width: height * 16 / 9,
             height: height
         };
     }
