@@ -33,13 +33,7 @@ function getScreenAttributes(){
 }
 
 function get16to9Dimensions(width, height){
-    //分为全屏、横屏、竖屏3种情况
-    if(isFullScreen()){
-        return {
-            width: width,
-            height: height
-        };
-    }
+    //分为横屏和竖屏2种情况
     if(height > width){
         return {
             width: width,
