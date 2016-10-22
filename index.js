@@ -32,6 +32,28 @@ function getScreenAttributes(){
     };
 }
 
+function get16to9Dimensions(width, height){
+    //分为全屏、横屏、竖屏3种情况
+    if(isFullScreen()){
+        return {
+            width: width,
+            height: height
+        };
+    }
+    if(height > width){
+        return {
+            width: width,
+            height: width * 9 / 16;
+        }
+    }
+    if(width > height){
+        return {
+            width: height * 16 / 9;
+            height: height
+        };
+    }
+}
+
 const ScreenAttributes = {
     componentDidMount(){
         window.addEventListener('resize', this.onScreenAttributesChange);
@@ -46,5 +68,5 @@ const ScreenAttributes = {
     }
 };
 
-export {getScreenAttributes, isFullScreen};
+export {getScreenAttributes, isFullScreen, get16to9Dimensions};
 export default ScreenAttributes;
